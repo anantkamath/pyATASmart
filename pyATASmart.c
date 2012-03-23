@@ -11,14 +11,14 @@
 
 #include <Python.h>
 
- static PyObject *pyATASmart_powerOn(PyObject *self, PyObject *args)
+
+static PyObject *pyATASmart_diskOpen(PyObject *self, PyObject *args)
 {
 
 int ret;
- uint64_t ms;
  SkDisk *d;
- 
- if (!PyArg_ParseTuple(args, "s", &device))
+ const char *device;
+ if (!PyArg_ParseTuple(args, "s",&device))
     {
         return NULL;
     }
@@ -26,6 +26,22 @@ int ret;
                        
                         return Py_BuildValue("s", "Failed to open disk");
                 }
+        		return Py_BuildValue("O", d);
+}
+
+
+//Get the power-on time		
+ static PyObject *pyATASmart_getPowerOn(PyObject *self, PyObject *args)
+{
+
+int ret;
+ uint64_t ms;
+ SkDisk *d;
+ 
+ if (!PyArg_ParseTuple(args, "O", &d))
+    {
+        return NULL;
+    }
                       
 
                               if ((ret = sk_disk_smart_read_data(d)) < 0) {
@@ -41,7 +57,8 @@ int ret;
 }
 
 static PyMethodDef pyATASmart_methods[] = {
-        { "powerOn", (PyCFunction)pyATASmart_powerOn, METH_VARARGS, NULL },
+	{ "diskOpen", (PyCFunction)pyATASmart_diskOpen, METH_VARARGS, NULL },
+        { "getPowerOn", (PyCFunction)pyATASmart_getPowerOn, METH_VARARGS, NULL },
         { NULL, NULL, 0, NULL }
 };
  
