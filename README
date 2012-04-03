@@ -2,9 +2,10 @@ Python bindings for the libatasmart library
 
 Follows the same model adopted by the original library (i.e. functions like getPowerOn(disk) instead of disk.getPowerOn() )
 
-To compile, run 
+To install run:
 
-	gcc pyATASmart.c -shared -I/usr/include/python2.7 `pkg-config --cflags libatasmart` `pkg-config --libs libatasmart` -o pyATASmart.so -fPIC
+	python setup.py build
+	python setup.py install
 	
 
 Examples: (Run as root)
@@ -12,4 +13,6 @@ from pyATASmart.c import *
 
 disk=diskOpen('/dev/sda') #Creates a new disk object
 
+print smartIsAvailable(disk)
+print smartStatus(disk)
 print getPowerOn(disk)
