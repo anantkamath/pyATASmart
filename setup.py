@@ -1,10 +1,10 @@
 from distutils.core import setup, Extension
  
 pyATASmart = Extension('pyATASmart', 
-			sources = ['pyATASmart.c']
+			sources = ['pyATASmart.c'],
                         include_dirs = ['/usr/local/include'],
                         libraries = ['atasmart'],
-                        library_dirs = ['/usr/local/lib'],)
+                        library_dirs = ['/usr/local/lib'])
  
 setup (name = 'pyATASmart',
        version = '0.1',

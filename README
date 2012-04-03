@@ -5,7 +5,7 @@ Follows the same model adopted by the original library (i.e. functions like getP
 To install run:
 
 	python setup.py build
-	python setup.py install
+	sudo python setup.py install
 	
 
 Examples: (Run as root)
