@@ -3,7 +3,7 @@ from distutils.core import setup, Extension
 pyATASmart = Extension('pyATASmart', 
 			sources = ['pyATASmart.c'],
                         include_dirs = ['/usr/local/include'],
-                        libraries = ['atasmart'],
+                        libraries = ['libatasmart'],
                         library_dirs = ['/usr/local/lib'])
  
 setup (name = 'pyATASmart',
